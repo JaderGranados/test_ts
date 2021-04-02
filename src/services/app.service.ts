@@ -63,7 +63,7 @@ export class AppService {
     t: number,
     apples: Array<number>,
     oranges: Array<number>
-  ) {
+  ): Array<number> {
     try {
       if (apples.length == 0 || oranges.length == 0) {
         throw new Error("Fruits arrays can't be empty");
@@ -110,17 +110,15 @@ export class AppService {
         );
       }
 
-      grades.forEach((grade) => {
-        try {
+      const roundedGrades = grades.map((grade) => {
+        try{
           if (grade > 100 || grade < 0) {
             throw new Error("Grades should be between 0 and 100");
           }
-        } catch (error) {
+        }
+        catch (error){
           throw error;
         }
-      });
-
-      const roundedGrades = grades.map((grade) => {
         if (grade < 38) {
           return grade;
         }

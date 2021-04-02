@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
+    "start:js": "npm run build && node dist/index.js",
     "start:dev": "ts-node-dev src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p tsconfig.json",
+    "test": "mocha -r ts-node/register tests/**/*.test.ts",
+    "coverage": "nyc -r lcov -e .ts -x \"*.test.ts\" npm run test"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +22,11 @@
     "typescript": "^4.2.3"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.15",
+    "@types/mocha": "^8.2.2",
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2",
+    "nyc": "^15.1.0",
     "ts-node-dev": "^1.1.6"
   }
 }
